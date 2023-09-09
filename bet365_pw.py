@@ -156,7 +156,7 @@ with sync_playwright() as p:
 
                 eventos[i] = eventos[i]|odd_1[i]|odd_x[i]|odd_2[i]|data_muestra
                 print(eventos[i])
-                container_olimpo_odds.upsert_item(eventos[i])
+                #container_olimpo_odds.upsert_item(eventos[i])
 
 
             
