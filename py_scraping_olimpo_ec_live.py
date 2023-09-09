@@ -22,13 +22,6 @@ from azure.cosmos import CosmosClient
 import json
 import time
 
-url_cosmos = 'https://cosmodbolimpolakehouse.documents.azure.com:443/'
-key_cosmos = 'NOPE=='
-
-client_cosmos = CosmosClient(url_cosmos, credential=key_cosmos)
-database_cosmos = client_cosmos.get_database_client('betsoffice_scraping')
-#container_olimpo_odds = database_cosmos.get_container_client('olimpo_odds_ec_2023')
-container_olimpo_odds = database_cosmos.get_container_client('onepage_scraping_live_testing')
 
 
 from urllib.request import urlopen  
@@ -151,7 +144,7 @@ for url in lista_ligas_importantes:
             
                 id_unico = "EC-" + cadFechaEvento + "-FUTBOL-" +slugify(torneo)+"-" +slugify(nombreEvento)+str(en_vivo.upper())+"-OLIMPO"
 
-                container_olimpo_odds.upsert_item({
+                print({
                     "cod_pais": "EC",
                     "fecha_evento": cadFechaEvento,
                     "hora_evento":cadHoraEvento,

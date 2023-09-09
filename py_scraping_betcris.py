@@ -28,12 +28,6 @@ from lib_normalize import normalize
 
 cod_pais = "PTY"
 
-url_cosmos = 'https://proyecto-cuotas-pty.documents.azure.com:443/'
-key_cosmos = 'NOPE=='
-
-client_cosmos = CosmosClient(url_cosmos, credential=key_cosmos)
-database_cosmos = client_cosmos.get_database_client('sc_pty')
-container_olimpo_odds = database_cosmos.get_container_client('cuotas')
 
 
 ##Funciones de Scrapping
@@ -80,8 +74,6 @@ def get_odds(evento):
     return odd_1, odd_2, odd_x
 
 
-
-#driverRuta = r"C:\Users\afigu\Desktop\Selenium\chromedriver.exe"
 
 navegador = None
 tiempoMaximo = 10
@@ -195,7 +187,6 @@ for i in range(len(enlaces)):
                 "fecha_hora_muestra": fecha_muestra+"T"+hora_muestra+"Z"
             })
         print(item)
-        #container_olimpo_odds.upsert_item(element)
         
         df_eventos_.append(item)
 

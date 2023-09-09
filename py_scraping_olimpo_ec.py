@@ -22,13 +22,7 @@ from azure.cosmos import CosmosClient
 import json
 import time
 
-url_cosmos = 'https://cosmodbolimpolakehouse.documents.azure.com:443/'
-key_cosmos = 'NOPE=='
 
-client_cosmos = CosmosClient(url_cosmos, credential=key_cosmos)
-database_cosmos = client_cosmos.get_database_client('betsoffice_scraping')
-container_olimpo_odds = database_cosmos.get_container_client('olimpo_odds_ec_2023')
-container_olimpo_odds_last = database_cosmos.get_container_client('olimpo_odds_last_ec')
 
 
 from urllib.request import urlopen  
@@ -153,27 +147,8 @@ for url in lista_ligas_importantes:
             
                 id_unico = "EC-" + cadFechaEvento + "-FUTBOL-" +slugify(torneo)+"-" +slugify(nombreEvento)+str(en_vivo.upper())+"-OLIMPO"
 
-                container_olimpo_odds.upsert_item({
+                print({
                     "id":str(uuid.uuid4()),
-                    "cod_pais": "EC",
-                    "fecha_evento": cadFechaEvento,
-                    "hora_evento":cadHoraEvento,
-                    "fecha_hora_evento":cadFechaHoraEvento,
-                    "deporte": "Fútbol",
-                    "liga": torneo,
-                    "evento": nombreEvento,
-                    "odd_1":var1,
-                    "odd_x":varx,
-                    "odd_2":var2,
-                    "en_vivo": en_vivo,
-                    "proveedor":"Olimpo",
-                    "fecha_muestra": cad_fecha_muestra,
-                    "hora_muestra": cad_hora_muestra,
-                    "fecha_hora_muestra": cad_fechahora_muestra
-                })
-                
-                container_olimpo_odds_last.upsert_item({
-                    "id": id_unico,
                     "cod_pais": "EC",
                     "fecha_evento": cadFechaEvento,
                     "hora_evento":cadHoraEvento,

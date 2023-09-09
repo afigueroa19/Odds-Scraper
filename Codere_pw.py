@@ -15,12 +15,6 @@ hora_muestra = now.strftime("%H:%M:%S")
 
 cod_pais = "PTY"
 
-url_cosmos = 'https://proyecto-cuotas-pty.documents.azure.com:443/'
-key_cosmos = 'NOPE=='
-
-client_cosmos = CosmosClient(url_cosmos, credential=key_cosmos)
-database_cosmos = client_cosmos.get_database_client('sc_pty')
-container_olimpo_odds = database_cosmos.get_container_client('cuotas')
 
 
 array_dict_campeonatos = [\
@@ -54,8 +48,6 @@ def get_json(p, url_base):
     text = page.locator("xpath=//body/pre").inner_text()
     
     browser.close()
-    #text =text[1:-1]
-    #print(text)
     y = json.loads(text)
     return y
 
@@ -82,8 +74,6 @@ with sync_playwright() as p:
                 odd_1 = y[j]['Games'][0]['Results'][0]['Odd']
                 odd_x = y[j]['Games'][0]['Results'][1]['Odd']
                 odd_2 = y[j]['Games'][0]['Results'][2]['Odd']
-                #print(odd_1, odd_x,odd_2, sep=' - ')
-                #print('-'*30)
 
                 if now>= fecha:
                     en_vivo = 'SI'
@@ -110,7 +100,6 @@ with sync_playwright() as p:
                     })
                 print(item)
                 print('-'*30)\
-                #container_olimpo_odds.upsert_item(item)
             sleep(5)
         except Exception as e:
             print(e)

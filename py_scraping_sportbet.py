@@ -23,15 +23,6 @@ hora_muestra = now.strftime("%H:%M:%S")
 
 cod_pais = "EC"
 
-url_cosmos = 'https://cosmodbolimpolakehouse.documents.azure.com:443/'
-key_cosmos = 'NOPE=='
-
-client_cosmos = CosmosClient(url_cosmos, credential=key_cosmos)
-database_cosmos = client_cosmos.get_database_client('betsoffice_scraping')
-container_olimpo_odds = database_cosmos.get_container_client('olimpo_odds_ec_2023')
-container_olimpo_odds_last = database_cosmos.get_container_client('olimpo_odds_last_ec')
-
-
 array_dict_campeonatos = [\
 { "ChampName": "Europa / UEFA Champions League", "ChampId": 4584},\
 { "ChampName": "Europa / UEFA Europa League", "ChampId": 4230},\

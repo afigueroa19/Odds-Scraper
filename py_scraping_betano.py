@@ -28,8 +28,6 @@ from selenium.webdriver import ActionChains
 if sys.version_info[0] >= 3:
     unicode = str
 
-url_cosmos = 'https://cosmodbolimpolakehouse.documents.azure.com:443/'
-key_cosmos = 'NOPE=='
 
 client_cosmos = CosmosClient(url_cosmos, credential=key_cosmos)
 database_cosmos = client_cosmos.get_database_client('betsoffice_scraping')
@@ -273,7 +271,7 @@ if (VISITAR_LIGAS):
                     print("Z1")
                     id_unico = "EC-" + str(cadFechaEvento) + "-FUTBOL-" + str(slugify(liga)) + "-" + str(slugify(evento)) +str(en_vivo.upper())+"-BETANO"
                     print("Z2")
-                    container_olimpo_odds_last.upsert_item({
+                    print({
                         "id":id_unico,
                         "cod_pais": "EC",
                         "fecha_evento": cadFechaEvento,

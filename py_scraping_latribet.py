@@ -193,13 +193,6 @@ def obtenerEventos(nombreItem):
                 ### AGREGAR OLIMPO_COD_PAIS ###
                 cod_pais = "EC"
 
-                url_cosmos = 'https://cosmodbolimpolakehouse.documents.azure.com:443/'
-                key_cosmos = 'NOPE=='
-
-                client_cosmos = CosmosClient(url_cosmos, credential=key_cosmos)
-                database_cosmos = client_cosmos.get_database_client('betsoffice_scraping')
-                container_olimpo_odds = database_cosmos.get_container_client('olimpo_odds_ec_2023')
-                container_olimpo_odds_last = database_cosmos.get_container_client('olimpo_odds_last_ec')
                 
                 en_vivo = 'NO'
                 if fecha == None:
@@ -230,7 +223,7 @@ def obtenerEventos(nombreItem):
                         id_unico = "EC-" + str(cadFechaEvento) + "-FUTBOL-" + slugify(torneo) + "-" + slugify(evento) +str(en_vivo.upper())+"-LATRIBET"
 
                         ##ID ALEATORIO
-                        container_olimpo_odds.upsert_item({
+                        print({
                             "id":str(uuid.uuid4()),
                             "cod_pais":cod_pais,
                             "fecha_evento": cadFechaEvento,
@@ -248,28 +241,7 @@ def obtenerEventos(nombreItem):
                             "hora_muestra": cad_hora_muestra,
                             "fecha_hora_muestra": cad_fechahora_muestra
                         })
-                        
-                        container_olimpo_odds_last.upsert_item({
-                            "id": id_unico,
-                            "cod_pais": "EC",
-                            "fecha_evento": cadFechaEvento,
-                            "hora_evento":cadHoraEvento,
-                            "fecha_hora_evento":cadFechaHoraEvento,
-                            "deporte": "Fútbol",
-                            "liga": torneo,
-                            "evento": evento,
-                            "odd_1":var1,
-                            "odd_x":varx,
-                            "odd_2":var2,
-                            "en_vivo": en_vivo,
-                            "proveedor":"LaTribet",
-                            "fecha_muestra": cad_fecha_muestra,
-                            "hora_muestra": cad_hora_muestra,
-                            "fecha_hora_muestra": cad_fechahora_muestra
-                        })
-
-                        #print('\t',[fecha, 'Fútbol', torneo, evento, var1, varx, var2,'LaTribet', fechaActual])
-                        #data.append([fecha, 'Fútbol', torneo, evento, var1, varx, var2,'Inkabet', fechaActual])
+                    
 
             break
 

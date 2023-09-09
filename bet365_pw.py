@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 import random
 from azure.cosmos import CosmosClient
 from lib_normalize import normalize
-#url_base = "https://www.bet365.com/#/AC/B1/C1/D1002/E76509991/G40/"
+
 
 array_dict_campeonatos = [\
 #{"ChampName": "Italia / Serie A", "url_base": 'https://www.bet365.com/#/AC/B1/C1/D1002/E76509991/G40/'},\
@@ -29,12 +29,6 @@ array_dict_campeonatos = [\
 
 cod_pais = "PTY"
 
-url_cosmos = 'https://proyecto-cuotas-pty.documents.azure.com:443/'
-key_cosmos = 'NOPE=='
-
-client_cosmos = CosmosClient(url_cosmos, credential=key_cosmos)
-database_cosmos = client_cosmos.get_database_client('sc_pty')
-container_olimpo_odds = database_cosmos.get_container_client('cuotas')
 
 now = datetime.now()
 fecha_muestra = now.strftime("%Y-%m-%d")
@@ -143,11 +137,6 @@ with sync_playwright() as p:
             
             
             for i in range(len(eventos)):
-                #en_vivo = 'NO'
-                #fecha_evento=eventos[i].get('fecha_hora_evento', '1999-01-01T00:00:00Z')
-                #print(fecha_evento)
-                #if fecha_muestra>=eventos[i].get('fecha_hora_evento', '1999-01-01T00:00:00Z'):
-                #    en_vivo = 'SI'
                 data_muestra = {
                 "proveedor": "Bet365",
                 "fecha_muestra": fecha_muestra,
@@ -156,7 +145,6 @@ with sync_playwright() as p:
 
                 eventos[i] = eventos[i]|odd_1[i]|odd_x[i]|odd_2[i]|data_muestra
                 print(eventos[i])
-                #container_olimpo_odds.upsert_item(eventos[i])
 
 
             
@@ -167,7 +155,7 @@ with sync_playwright() as p:
             continue
 
         finally:
-            #browser.close()
+            browser.close()
             time_to_sleep = random.randint(5, 12)
             print('time_to_sleep : ', time_to_sleep)
             sleep(time_to_sleep)
