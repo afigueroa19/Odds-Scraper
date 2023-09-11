@@ -104,7 +104,7 @@ with sync_playwright() as p:
                         "fecha_hora_muestra": fecha_muestra+"T"+hora_muestra+"Z"
                     })
                 print(item)
-                print('-'*30)\
+                print('-'*30)
             sleep(5)
         except Exception as e:
             print(e)
