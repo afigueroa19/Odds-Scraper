@@ -8,7 +8,7 @@ import random
 from azure.cosmos import CosmosClient
 from lib_normalize import normalize
 
-
+##List of Leagues to Scrape
 array_dict_campeonatos = [\
 #{"ChampName": "Italia / Serie A", "url_base": 'https://www.bet365.com/#/AC/B1/C1/D1002/E76509991/G40/'},\
 #{ "ChampName": "Europa / UEFA Champions League", "url_base": 'https://www.bet365.com/#/AC/B1/C1/D1002/E79147586/G40/'},\
@@ -33,6 +33,13 @@ cod_pais = "PTY"
 now = datetime.now()
 fecha_muestra = now.strftime("%Y-%m-%d")
 hora_muestra = now.strftime("%H:%M:%S")
+
+'''
+The following two functions are used to parse the data and format it
+1. get_info will capture the datetime of the game, league, participants and if the event have starts,
+    the get_fecha function  is used within get_info for parcing the datetime data
+2. get_odds will capture the odds for 1x2(Home-Tie-Visitor) bets
+'''
 def get_info(parent_element, liga):
     eventos = []
     Equipos = []

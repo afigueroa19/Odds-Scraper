@@ -16,7 +16,7 @@ hora_muestra = now.strftime("%H:%M:%S")
 cod_pais = "PTY"
 
 
-
+#Leagues to Scrape
 array_dict_campeonatos = [\
 #{ "ChampName": "Europa / UEFA Champions League", "ChampId": 4584},\
 #{ "ChampName": "Europa / UEFA Europa League", "ChampId": 4230},\
@@ -35,7 +35,9 @@ array_dict_campeonatos = [\
 #{"ChampName": "Ecuador / Liga Pro", "ChampId": 26888}
 ]
 
-
+'''
+This function will get the inner text of the links given.
+'''
 def get_json(p, url_base):
     browser = p.firefox.launch(headless=True)
     context = browser.new_context(
@@ -62,7 +64,10 @@ with sync_playwright() as p:
             url_base = ('''
                 https://m.codere.pa/NavigationService/Home/GetEvents?parentId={code}&gameTypes=1;18
                 ''').format(code=code)
+            #The get_json function will get the inner text
             y = get_json(p, url_base)
+            
+            #Loop through all events getting the required info
             for j in range(len(y)):
                 nombre_evento = y[j]['Name']
                 nombre_evento = normalize(nombre_evento)

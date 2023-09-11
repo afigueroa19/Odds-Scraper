@@ -31,6 +31,13 @@ cod_pais = "PTY"
 
 
 ##Funciones de Scrapping
+'''
+The following unctions are used to parse the data and format it
+1. get_fecha_evento will capture the datetime of the game, league, participants and if the event have starts,
+    the get_fecha function  is used within get_info for parcing the datetime data
+2. get_nombre_evento will capture the Home and visitor teams
+3. get_odds will capture the odds for 1x2(Home-Tie-Visitor) bets
+'''
 def get_fecha_evento(evento):
     try:
         fecha_evento = evento.find_elements(By.XPATH, ".//div[@class = 'game-time align-self-center']/span")
@@ -93,7 +100,7 @@ opciones.add_argument('--no-sandbox')
 opciones.add_argument("--window-size=1920x1080")
 opciones.add_argument('--disable-notifications')
 opciones.add_argument('--disable-dev-shm-usage') #aaaaa
-#opciones.add_argument('--headless') #para evitar gui
+opciones.add_argument('--headless') #para evitar gui
 opciones.add_argument('--disable-gpu')
 opciones.add_argument("user-agent=My user Agent")
 #navegador = webdriver.Chrome(driverRuta, options = opciones)
@@ -118,6 +125,7 @@ button0.click()
 sleep(3)
 #navegador.save_screenshot("/home/root/scraping/estado_betcris.png")
 
+###Leagues to scrape
 enlaces = [("Inglaterra / Premier League","https://be.betcris.pa/es/deportes/futbol/ligas-top/inglaterra-liga-premier/")#,
           #("Francia / Ligue 1","https://be.betcris.pa/es/deportes/futbol/ligas-top/francia-liga-1/"),
           #("Alemania / Bundesliga","https://be.betcris.pa/es/deportes/futbol/ligas-top/alemania-bundesliga/"),
