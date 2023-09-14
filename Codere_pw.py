@@ -90,7 +90,7 @@ with sync_playwright() as p:
                         "cod_pais":cod_pais,
                         "fecha_evento": fecha.strftime('%Y-%m-%d'),
                         "hora_evento": fecha.strftime('%H-%M-%S'),
-                        "fecha_hora_evento": fecha.strftime('%Y-%m-%dT%H-%M-%SZ'),
+                        "fecha_hora_evento": fecha.strftime('%Y-%m-%dT%H:%M:%SZ'),
                         "deporte": "Fútbol",
                         "liga": nombre_liga,
                         "evento": nombre_evento,
