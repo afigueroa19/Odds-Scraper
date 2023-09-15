@@ -28,7 +28,7 @@ array_dict_campeonatos = [\
 ]
 
 cod_pais = "PTY"
-
+a=NOPE
 
 now = datetime.now()
 fecha_muestra = now.strftime("%Y-%m-%d")
